@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, filter } from 'rxjs';
 import { IUser } from '../interfaces/users.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ApiService {
   constructor(private http: HttpClient) {}
 

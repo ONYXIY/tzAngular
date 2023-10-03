@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,7 +13,14 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [HttpClientModule, HttpClient]
+  providers: [
+    HttpClient,
+    {
+      provide: ApiService,
+      useFactory: (http: HttpClient) => new ApiService(http),
+      deps: [HttpClient]
+    }
+  ]
 })
 export class UserListComponent {
 
